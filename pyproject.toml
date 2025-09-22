@@ -1,0 +1,31 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a//dev/null b/pyproject.toml
+index 0000000000000000000000000000000000000000..ff085105a391f8bc0ad03918eaa8cf240ea02526 100644
+--- a//dev/null
++++ b/pyproject.toml
+@@ -0,0 +1,22 @@
++[build-system]
++requires = ["setuptools>=61.0"]
++build-backend = "setuptools.build_meta"
++
++[project]
++name = "packing-list-translator"
++version = "0.1.0"
++description = "Translate Excel spreadsheets into English"
++readme = "README.md"
++requires-python = ">=3.10"
++dependencies = [
++    "googletrans==4.0.0rc1",
++    "openpyxl>=3.1",
++]
++
++[project.optional-dependencies]
++dev = [
++    "pytest>=7.4",
++]
++
++[project.scripts]
++translate-excel = "packing_list_translator.cli:main"
+ 
+EOF
+)
